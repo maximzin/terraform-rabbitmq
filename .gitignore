@@ -1,0 +1,5 @@
+.terraform/          # папка с провайдерами
+terraform.tfstate    # файл состояния (содержит секреты и данные окружения)
+terraform.tfstate.backup
+*.tfvars             # файлы с реальными паролями/ключами
+crash.log
