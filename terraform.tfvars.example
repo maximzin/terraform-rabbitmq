@@ -1,0 +1,70 @@
+# terraform.tfvars.example
+# Пример конфигурации для RabbitMQ Terraform
+# Скопируй этот файл в terraform.tfvars и заполни своими значениями
+
+# ============================================
+# RabbitMQ подключение (обязательные параметры)
+# ============================================
+
+# URL Management API RabbitMQ (НЕ AMQP порт 5672!)
+# Для локальной разработки:
+rabbitmq_endpoint = "http://localhost:15672"
+# Для удаленного сервера:
+# rabbitmq_endpoint = "http://your-rabbitmq-server:15672"
+
+# Admin credentials (пользователь с правами администратора)
+# В docker-compose это переменные RABBITMQ_DEFAULT_USER и RABBITMQ_DEFAULT_PASS
+rabbitmq_username = "myuser"
+rabbitmq_password = "mypassword"
+
+# Отключить проверку TLS сертификата (только для разработки!)
+# Для production выставь false и настрой HTTPS
+rabbitmq_insecure = true
+
+# ============================================
+# Virtual Host (изоляция окружения)
+# ============================================
+
+# Имя virtual host'а
+# Может быть: dev_payment_vhost, test_payment_vhost, prod_payment_vhost
+vhost_name = "payment_vhost"
+
+# ============================================
+# Пользователь приложения
+# ============================================
+
+# Имя пользователя для твоего Spring приложения
+app_username = "payment_app"
+
+# Пароль для приложения (обязательно измени на свой!)
+# Для production используй сложный пароль
+app_password = "app_secure_password"
+
+# ============================================
+# Примеры для разных окружений
+# ============================================
+
+# Для разработки (локально):
+# rabbitmq_endpoint = "http://localhost:15672"
+# rabbitmq_username = "guest"
+# rabbitmq_password = "guest"
+# vhost_name = "dev_payment_vhost"
+# app_username = "dev_app"
+# app_password = "dev123"
+
+# Для тестирования:
+# rabbitmq_endpoint = "http://test-rabbitmq:15672"
+# rabbitmq_username = "test_admin"
+# rabbitmq_password = "test_pass"
+# vhost_name = "test_payment_vhost"
+# app_username = "test_app"
+# app_password = "test_pass_456"
+
+# Для production (с TLS):
+# rabbitmq_endpoint = "https://rabbitmq.prod.company.com:15672"
+# rabbitmq_username = "prod_admin"
+# rabbitmq_password = "SUPER_STRONG_PASSWORD"
+# rabbitmq_insecure = false
+# vhost_name = "prod_payment_vhost"
+# app_username = "prod_payment_service"
+# app_password = "COMPLEX_PASSWORD_HERE"
